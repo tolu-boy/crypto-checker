@@ -5,6 +5,11 @@ import React, { useState } from 'react';
 
 
 const items: MenuProps['items'] = [
+
+  {
+    label: 'Tolu Crypto',
+    key: 'logo',
+  },
     {
       label: 'Cryptocurrencies',
       key: 'mail',
@@ -33,15 +38,16 @@ const items: MenuProps['items'] = [
 
 
 const Nav: React.FC = () => {
-     const [current, setCurrent] = useState('mail');
+    //  const [current, setCurrent] = useState('mail');
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
-    setCurrent(e.key);
+    // setCurrent(e.key);
   };
+
   return (
     <div className="pt-1">
-        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items}  />
+        <Menu onClick={onClick}  mode="horizontal" items={items}   />
     </div>
   )
 }
