@@ -14,3 +14,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.pt-1{
+  padding: 1% 0 ;
+}
+
+.search-area{
+  margin: 0 15%;
+}
