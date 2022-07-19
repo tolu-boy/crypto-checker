@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Button, Form, Input, Row, Col,Avatar, List } from "antd";
+import { Button, Form, Input, Row, Col, Avatar, List } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 const Home: NextPage = () => {
@@ -13,36 +13,33 @@ const Home: NextPage = () => {
     console.log("Failed:", errorInfo);
   };
 
-
   const data = [
     {
-      title: 'Ant Design Title 1',
+      title: "Ant Design Title 1",
     },
     {
-      title: 'Ant Design Title 2',
+      title: "Ant Design Title 2",
     },
     {
-      title: 'Ant Design Title 3',
+      title: "Ant Design Title 3",
     },
     {
-      title: 'Ant Design Title 4',
-    }, {
-      title: 'Ant Design Title 4',
+      title: "Ant Design Title 4",
+    },
+    {
+      title: "Ant Design Title 4",
     },
 
     {
-      title: 'Ant Design Title 4',
-    }, {
-      title: 'Ant Design Title 4',
-    }, {
-      title: 'Ant Design Title 4',
+      title: "Ant Design Title 4",
     },
-
-
+    {
+      title: "Ant Design Title 4",
+    },
+    {
+      title: "Ant Design Title 4",
+    },
   ];
-
-
-
 
   return (
     <div className="">
@@ -68,9 +65,9 @@ const Home: NextPage = () => {
             </Col>
 
             <Col md={4}>
-              <Form.Item >
-                <Button htmlType="submit"  type="primary">
-                 Search
+              <Form.Item>
+                <Button htmlType="submit" type="primary">
+                  Search
                 </Button>
               </Form.Item>
             </Col>
@@ -79,19 +76,27 @@ const Home: NextPage = () => {
       </section>
 
       <section className="cryto-cards">
-    <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={item => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-          title={<a href="https://ant.design">{item.title}</a>}
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+        <List
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item) => (
+            <List.Item className="border-non">
+                <Col md={3}>
+                  <Avatar src="https://joeschmoe.io/api/v1/random" />
+                </Col>
+
+                <Col md={10}>
+                {item.title}
+                </Col>
+
+
+                <Col md={11}>
+               <p>Ant Design, a design language for background applications, is refined by Ant UED Team</p>
+                </Col>
+       
+            </List.Item>
+          )}
         />
-      </List.Item>
-    )}
-  />
       </section>
     </div>
   );

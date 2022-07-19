@@ -30,5 +30,10 @@ a {
 
 
 .cryto-cards{
-  margin: 1% 30% 0 6% ;
+  margin: 1% 10% 0 6% ;
+}
+
+.border-none{
+  border: none !important;
+  padding: 0 !important;
 }
