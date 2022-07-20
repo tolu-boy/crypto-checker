@@ -6,25 +6,32 @@ import useCryptoApi from "../queries/useCrytoApi";
 
 const Home: NextPage = () => {
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+     setSearch(values.name)      
+
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
+
+  interface coinTypes {name: string; symbol: string; market_cap_rank:number; large:string}
+
+
   const [search, setSearch] = useState("");
   const { data: CryptoApi } = useCryptoApi(search);
-  const coins = CryptoApi ? CryptoApi.coins.splice(0, 10) : [];
+  const coins : coinTypes[]= CryptoApi?.coins.splice(0,10) || [];;
+  const [form] = Form.useForm();
 
   return (
     <div className="">
       <section className="search-area pt-1">
-        <Form name="normal_login" initialValues={{ remember: true }}>
+        <Form name="normal_login" form={form}   onFinish={onFinish}
+              onFinishFailed={onFinishFailed}>
           <Row gutter={16}>
             <Col md={12}>
               <Form.Item
-                name="fName"
+                name="name"
                 rules={[
                   {
                     required: true,
@@ -36,6 +43,9 @@ const Home: NextPage = () => {
                   prefix={<SearchOutlined />}
                   type="text"
                   placeholder="Search crypto here"
+                  onChange= {(e)=>{
+                    setSearch(e.target.value)      
+                  }}
                 />
               </Form.Item>
             </Col>
@@ -55,13 +65,12 @@ const Home: NextPage = () => {
         <List
           itemLayout="horizontal"
           dataSource={coins}
-          renderItem={(item: any) => (
+          renderItem={(item) => (
             <List.Item className="border-non">
               <Col md={5}> {item.market_cap_rank}</Col>
               <Col md={2}>
                 <Avatar src={item.large} />
               </Col>
-
               <Col md={5}>{item.symbol}</Col>
               <Col md={5}>{item.name}</Col>
             </List.Item>
