@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import React, { useState } from "react";
 import { Button, Form, Input, Row, Col, Avatar, List } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import useCryptoApi from "../queries/useCrytoApi";
 
 const Home: NextPage = () => {
   const onFinish = (values: any) => {
@@ -13,33 +13,9 @@ const Home: NextPage = () => {
     console.log("Failed:", errorInfo);
   };
 
-  const data = [
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-  ];
+  const [search, setSearch] = useState("");
+  const { data: CryptoApi } = useCryptoApi(search);
+  const coins = CryptoApi ? CryptoApi.coins.splice(0, 10) : [];
 
   return (
     <div className="">
@@ -78,22 +54,16 @@ const Home: NextPage = () => {
       <section className="cryto-cards">
         <List
           itemLayout="horizontal"
-          dataSource={data}
-          renderItem={(item) => (
+          dataSource={coins}
+          renderItem={(item: any) => (
             <List.Item className="border-non">
-                <Col md={3}>
-                  <Avatar src="https://joeschmoe.io/api/v1/random" />
-                </Col>
+              <Col md={5}> {item.market_cap_rank}</Col>
+              <Col md={2}>
+                <Avatar src={item.large} />
+              </Col>
 
-                <Col md={10}>
-                {item.title}
-                </Col>
-
-
-                <Col md={11}>
-               <p>Ant Design, a design language for background applications, is refined by Ant UED Team</p>
-                </Col>
-       
+              <Col md={5}>{item.symbol}</Col>
+              <Col md={5}>{item.name}</Col>
             </List.Item>
           )}
         />
