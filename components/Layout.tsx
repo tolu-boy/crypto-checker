@@ -1,19 +1,18 @@
 import Footer from "./Footer";
 import Nav from "./Nav";
 
-
 type LayoutsProps = {
-    children: React.ReactNode; // 👈️ type children
-  };
+  children: React.ReactNode; // 👈️ type children
+};
 
-const Layout = ({children}: LayoutsProps) => {
+const Layout = ({ children }: LayoutsProps) => {
   return (
     <div>
-       <Nav/>
-        {children}
-       <Footer/>
+      <Nav />
+      {children}
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
