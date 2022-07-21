@@ -7,22 +7,34 @@ import {
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const items: MenuProps["items"] = [
   {
     label: "Tolu Crypto",
     key: "logo",
   },
+
   {
-    label: "Cryptocurrencies",
-    key: "mail",
+    label: (
+      <Link href="/">
+        <a>Cryptocurrencies</a>
+      </Link>
+    ),
+    key: "crypto",
     icon: <DollarCircleOutlined />,
   },
+
   {
-    label: "Exchanges",
-    key: "app",
+    label: (
+      <Link href="/nft">
+        <a>NFT</a>
+      </Link>
+    ),
+    key: "nft",
     icon: <RedoOutlined />,
   },
+
   {
     label: "Portfolio",
     key: "SubMenu",
@@ -37,16 +49,11 @@ const items: MenuProps["items"] = [
 ];
 
 const Nav: React.FC = () => {
-  //  const [current, setCurrent] = useState('mail');
 
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-    // setCurrent(e.key);
-  };
 
   return (
     <div className="pt-1">
-      <Menu onClick={onClick} mode="horizontal" items={items} />
+      <Menu  mode="horizontal" items={items} />
     </div>
   );
 };

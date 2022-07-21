@@ -1,3 +1,5 @@
+
+
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import { Button, Form, Input, Row, Col, Avatar, List } from "antd";
@@ -15,19 +17,22 @@ const Home: NextPage = () => {
   };
 
 
-  interface coinTypes {name: string; symbol: string; market_cap_rank:number; large:string}
+  interface nftsTypes {name: string; symbol: string; id:string; thumb:string}
 
 
   const [search, setSearch] = useState("");
   const { data: CryptoApi } = useCryptoApi(search);
-  const coins : coinTypes[]= CryptoApi?.coins.splice(0,10) || [];;
+  const nfts : nftsTypes[]= CryptoApi?CryptoApi.nfts.splice(20,30) : [];
+
+
+
   const [form] = Form.useForm();
 
   return (
     <div className="">
       <section className="search-area pt-1">
         <Form name="normal_login" form={form}   onFinish={onFinish}
-         onFinishFailed={onFinishFailed}>    
+              onFinishFailed={onFinishFailed}>
           <Row gutter={16}>
             <Col md={12}>
               <Form.Item
@@ -60,21 +65,21 @@ const Home: NextPage = () => {
           </Row>
         </Form>
       </section>
-      
+
       <section className="cryto-cards">
       <Row>
                   <Col md={24}>
-                  <h2>CRYPTO SECTION</h2>
+                  <h2>NFT SECTION</h2>
                   </Col>
                 </Row>
         <List
           itemLayout="horizontal"
-          dataSource={coins}
+          dataSource={nfts}
           renderItem={(item) => (
             <List.Item className="border-non">
-              <Col md={5}> {item.market_cap_rank}</Col>
+              <Col md={5}> {item.id}</Col>
               <Col md={2}>
-                <Avatar src={item.large} />
+                <Avatar src={item.thumb} />
               </Col>
               <Col md={5}>{item.symbol}</Col>
               <Col md={5}>{item.name}</Col>
