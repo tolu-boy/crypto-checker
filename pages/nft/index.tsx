@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 import React, { useState } from "react";
 import { Button, Form, Input, Row, Col, Avatar, List } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import useCryptoApi from "../queries/useCrytoApi";
+import useCryptoApi from '../../queries/useCrytoApi';
 
 const Home: NextPage = () => {
   const onFinish = (values: any) => {

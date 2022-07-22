@@ -5,7 +5,7 @@ const getNftApi = async (q) => {
   const { data } = await axios.get(
     `https://api.coingecko.com/api/v3/search?query=${q}`
   );
-  return data;
+  return data.nfts;
 };
 
 export default function useNftApi(value) {
