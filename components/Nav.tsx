@@ -3,6 +3,7 @@ import {
   SettingOutlined,
   DollarCircleOutlined,
   RedoOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -36,9 +37,17 @@ const items: MenuProps["items"] = [
   },
 
   {
-    label: "Portfolio",
-    key: "SubMenu",
-    icon: <SettingOutlined />,
+    label: (
+      <a
+        href="https://www.linkedin.com/in/tolu-alonge-89ab4517a/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        linkedin
+      </a>
+    ),
+    key: "Linkedin",
+    icon: <UserOutlined />,
   },
 
   {
@@ -49,11 +58,9 @@ const items: MenuProps["items"] = [
 ];
 
 const Nav: React.FC = () => {
-
-
   return (
     <div className="pt-1">
-      <Menu  mode="horizontal" items={items} />
+      <Menu mode="horizontal" items={items} />
     </div>
   );
 };
