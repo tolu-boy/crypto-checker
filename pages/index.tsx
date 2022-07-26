@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Button, Form, Input, Row, Col, Avatar, List } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import useCryptoApi from "../queries/useCrytoApi";
+import Link from 'next/link'
+
 
 const Home: NextPage = () => {
   const onFinish = (values: any) => {
@@ -15,12 +17,12 @@ const Home: NextPage = () => {
   };
 
 
-  interface coinTypes {name: string; symbol: string; market_cap_rank:number; large:string}
+  interface coinTypes {name: string; symbol: string; market_cap_rank:number; large:string; id:string}
 
 
   const [search, setSearch] = useState("");
   const { data: CryptoApi } = useCryptoApi(search);
-  const coins : coinTypes[]= CryptoApi?.coins.splice(0,10) || [];;
+  const coins : coinTypes[]= CryptoApi?.coins.splice(0,10) || [];
   const [form] = Form.useForm();
 
   return (
@@ -71,6 +73,7 @@ const Home: NextPage = () => {
           itemLayout="horizontal"
           dataSource={coins}
           renderItem={(item) => (
+            <Link href={`/${item.id}`}>
             <List.Item className="border-non">
               <Col md={5}> {item.market_cap_rank}</Col>
               <Col md={2}>
@@ -79,9 +82,12 @@ const Home: NextPage = () => {
               <Col md={5}>{item.symbol}</Col>
               <Col md={5}>{item.name}</Col>
             </List.Item>
+            </Link>
+
           )}
         />
       </section>
+    
     </div>
   );
 };

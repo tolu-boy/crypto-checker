@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 
   const [search, setSearch] = useState("");
   const { data: CryptoApi } = useCryptoApi(search);
-  const nfts : nftsTypes[]= CryptoApi?CryptoApi.nfts.splice(20,30) : [];
+  const nfts : nftsTypes[]= CryptoApi?CryptoApi.nfts.splice(30,40) : [];
 
 
 
